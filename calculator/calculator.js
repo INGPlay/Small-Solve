@@ -1,8 +1,8 @@
 const displays = {
-  inputDisplay : function() {
+  inputDisplay() {
     return document.querySelector('#input');
   },
-  resultDisplay : function() {
+  resultDisplay() {
     return document.querySelector('#result');
   }
 }
@@ -12,13 +12,13 @@ const bools = {
 }
 
 const calculator = {
-  inputNum : function(num) {
+  inputNum(num) {
     displays.inputDisplay().value += num;
 
     bools.canSign = true;
 },
 
-inputSign : function(sign) {
+inputSign(sign) {
   if (bools.canSign === true) {
     displays.inputDisplay().value += sign;
 
@@ -26,16 +26,16 @@ inputSign : function(sign) {
   }
 },
 
-deleteNum : function() {
+deleteNum() {
   displays.inputDisplay().value = displays.inputDisplay().value.slice(0, -1);
 },
 
-allClear : function() {
+allClear() {
   displays.inputDisplay().value = "";
   displays.resultDisplay().value = "";
 },
 
-answer : function() {
+answer() {
   const value = ( new Function( 'return ' + displays.inputDisplay().value ) )();
   if (value !== undefined) {
     displays.resultDisplay().value = value;

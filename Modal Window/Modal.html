@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Modal Window Test</title>
+
+    <style>
+      
+      #modalOpen{
+        all:unset;
+        background-color:darkgreen;
+        color:white;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .modal{
+        position: fixed;
+        top:30%;
+        left: 40%;
+        width: 100%;
+        height: 100%;
+
+        display:none;
+      }
+
+      .modalContent{
+        position: relative;
+        border:black 2px solid;
+        padding:20px 10px;
+        width: 300px;
+        background-color:white;
+        border-radius: 10px;
+      }
+
+      .modalContent h2{
+        margin: 0px;
+      }
+
+      #modalExit{
+        text-align:right;
+      }
+
+      .modalLayer{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0, 0, 0, 0.5);
+        z-index:-1;
+      }
+
+      .modalSwitch{
+        cursor:pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button class = "modalSwitch" id = "modalOpen">Modal Window</button>
+
+    <div class="modal">
+      <div class="modalContent">
+        <h2>This is Modal Window</h2>
+        <p>
+          모달창입니다.
+        </p>
+        <div class="modalSwitch" id = "modalExit">
+          <button type="button">모달창 닫기</button>
+        </div>
+      </div>
+
+      <div class="modalLayer"></div>
+    </div>
+
+    <script>
+      document.querySelector('.modal').style.display = 'none';
+
+      const modalSwitches = document.querySelectorAll('.modalSwitch');
+
+      for (let i of modalSwitches){
+        i.addEventListener('click', switchModal);
+      }
+
+
+      function switchModal(){
+        const modal = document.querySelector('.modal');
+        console.log(modal.style.display);
+        switch(modal.style.display){
+          case 'block':
+            modal.style.display = 'none';
+            break;
+
+          case 'none':
+            modal.style.display = 'block';
+            break;
+
+          default:
+            throw new Error('switchModal Exception');
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
