@@ -1,3 +1,5 @@
+import argparse
+from ast import parse
 from pathlib import Path
 import sys
 import shutil
@@ -5,10 +7,25 @@ import shutil
 imagesDir = 'images'
 labelsDir = 'labels'
 
-trainPath = Path(sys.argv[1])
-trainRatio = float(sys.argv[2])
-validRatio = float(sys.argv[3])
-testRatio = float(sys.argv[4])
+parser = argparse.ArgumentParser(description=
+    "YOLOv5 Image Splitter \n Train Ratio + Valid Ratio + Test Ratio = 1"
+)
+
+parser.add_argument('--trainPath', required=True,
+    help='train path on images and labels')
+parser.add_argument('--trainRatio', required=True, type=float,
+    help='Train Ratio for images and labels')
+parser.add_argument('--validRatio', required=True, type=float,
+    help='Valid Ratio for images and labels')
+parser.add_argument('--testRatio', required=True, type=float,
+    help='Test Ratio for images and labels')
+
+args = parser.parse_args()
+
+trainPath = Path(args.trainPath)
+trainRatio = args.trainPath
+validRatio = args.trainPath
+testRatio = args.trainPath
 
 if trainRatio + validRatio + testRatio != 1 :
     sys.exit('Sum of ratios is not 1')
