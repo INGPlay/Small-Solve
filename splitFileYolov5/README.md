@@ -5,6 +5,6 @@ python3 --trainPath trainDir경로 --trainRatio train비율 --validRatio valid�
 
 ## 플래그
 --trainPath, -p  
---trainRatio, -t
---validRatio, -v
---testRatio, -te
+--trainRatio, -t  
+--validRatio, -v  
+--testRatio, -te  
