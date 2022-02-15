@@ -11,21 +11,20 @@ parser = argparse.ArgumentParser(description=
     "YOLOv5 Image Splitter \n Train Ratio + Valid Ratio + Test Ratio = 1"
 )
 
-parser.add_argument('--trainPath', required=True,
+parser.add_argument('--trainPath', '-p',
     help='train path on images and labels')
-parser.add_argument('--trainRatio', required=True, type=float,
+parser.add_argument('--trainRatio', '-t', type=float,
     help='Train Ratio for images and labels')
-parser.add_argument('--validRatio', required=True, type=float,
+parser.add_argument('--validRatio', '-v', type=float,
     help='Valid Ratio for images and labels')
-parser.add_argument('--testRatio', required=True, type=float,
+parser.add_argument('--testRatio', '-te', type=float, default=0,
     help='Test Ratio for images and labels')
 
 args = parser.parse_args()
-
 trainPath = Path(args.trainPath)
-trainRatio = args.trainPath
-validRatio = args.trainPath
-testRatio = args.trainPath
+trainRatio = args.trainRatio
+validRatio = args.validRatio
+testRatio = args.testRatio
 
 if trainRatio + validRatio + testRatio != 1 :
     sys.exit('Sum of ratios is not 1')
@@ -39,18 +38,20 @@ validPath = dataSetPath / 'valid'
 validImagePath = validPath / imagesDir
 validLabelPath = validPath / labelsDir
 
-testPath = dataSetPath / 'test'
-testImagePath = testPath / imagesDir
-testLabelPath = testPath / labelsDir
-
 # valid 경로 생성
 validPath.mkdir(exist_ok=True)
 validImagePath.mkdir(exist_ok=True)
 validLabelPath.mkdir(exist_ok=True)
-#test 경로 생성
-testPath.mkdir(exist_ok=True)
-testImagePath.mkdir(exist_ok=True)
-testLabelPath.mkdir(exist_ok=True)
+
+if trainRatio == 1 :
+    testPath = dataSetPath / 'test'
+    testImagePath = testPath / imagesDir
+    testLabelPath = testPath / labelsDir
+    
+    #test 경로 생성
+    testPath.mkdir(exist_ok=True)
+    testImagePath.mkdir(exist_ok=True)
+    testLabelPath.mkdir(exist_ok=True)
 
 
 jpgList = list(trainImagePath.glob('*.jpg'))
