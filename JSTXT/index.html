@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=\UTF-8\>
+    <title>Test</title>
+</head>
+<body>
+    <form id='nameAndContent'>
+        <div>
+            Name : <input type=text name='name' value='name'>
+        </div>
+        <div>
+            <textarea name='content' value='content'></textarea>
+        </div>
+    </form>
+    <button onclick="readForm()">submit</button>
+    <p id ='demo'></p>
+</body>
+<script>
+    function readForm(){
+        let form = document.getElementById('nameAndContent');
+        
+        let text ='';
+        
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = now.getMonth() + 1;
+        let date = now.getDate();
+
+        for (let i = 0; i < form.length; i++){
+            text += year + ' ' + month + ' ' + date;
+            text += form.elements[i].value + '<br>';
+        }
+
+        document.getElementById('demo').innerHTML = text;
+    }
+    
+</script>
+</html>
