@@ -12,3 +12,7 @@
 - TFLite 모델을 이용한 간단한 이미지 객체 탐지
 - 아래 코드를 참조해서 학습 및 코드 작성
 - https://github.com/SaraOlsson/tflite-objectdetection  
+### preprocessing
+- Compiler 전처리 확인
+- tcc -E spaghetti.c > spaghetti.i
+- http://recipes.egloos.com/5000231
