@@ -16,3 +16,6 @@
 - Compiler 전처리 확인
 - tcc -E spaghetti.c > spaghetti.i
 - http://recipes.egloos.com/5000231
+### urlibAuthorization
+- urllib를 이용한 Authorization 인증
+- https://gist.github.com/kaito834/36e693a3a54057666d28
