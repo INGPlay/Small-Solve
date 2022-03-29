@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(description=
 )
 
 parser.add_argument('--trainPath', '-p',
-    help='train path on images and labels')
+    help='path on images and labels, this is changed to \'train\' directory')
 parser.add_argument('--trainRatio', '-t', type=float,
     help='Train Ratio for images and labels')
 parser.add_argument('--validRatio', '-v', type=float,
