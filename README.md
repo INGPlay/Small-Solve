@@ -21,3 +21,5 @@
 - https://gist.github.com/kaito834/36e693a3a54057666d28   
 ### splitDataYolov4   
 - YOLOv4에 데이터셋 양식에 맞춰 train과 valid, test로 나누어진 데이터셋 만들기  
+### matchingFileChecker   
+- 파일이름은 같고 확장자가 다른 파일 무리 중에 짝이 맞지 않는 것 찾기
