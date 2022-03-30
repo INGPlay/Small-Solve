@@ -12,8 +12,8 @@ python --trainPath trainDirPath --trainRatio trainDirRatio --validRatio validDir
   
 ## feature  
    
-ImagesAndLabels  
-    (Images and Labels) * 100  
+* ImagesAndLabels  
+    * (Images and Labels) * 100  
   
 
 ```bash
