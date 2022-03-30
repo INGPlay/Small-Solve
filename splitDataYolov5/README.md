@@ -20,8 +20,8 @@ ImagesAndLabels
 $ python --trainPath ./ImagesAndLabels --trainRatio 0.7 --validRatio 0.3
 ```
    
-train    
-    (Images and Labels) * 70    
-valid   
-    (Images and Labels) * 30  
+* train    
+    * (Images and Labels) * 70    
+* valid   
+    * (Images and Labels) * 30  
     
