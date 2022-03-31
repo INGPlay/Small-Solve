@@ -59,7 +59,7 @@ def main() :
         validImagePath = copyFilePair(start=trainPath, destination=validPath, name=name, pairType1=imageType, pairType2='txt')
         validImageList.append(str(validImagePath.absolute()))
     
-    validPathTxt = printPathTxt(pathList=validImageList, savedTxtName='valid.txt')
+    validPathTxt = writePathTxt(pathList=validImageList, savedTxtName='valid.txt')
 
     testImageList = []
     testPathTxt = ''
@@ -74,13 +74,17 @@ def main() :
             testImagePath = copyFilePair(start=trainPath, destination=testPath, name=name, pairType1=imageType, pairType2='txt')
             testImageList.append(str(testImagePath.absolute()))
         
-        testPathTxt = printPathTxt(pathList=testImageList, savedTxtName='test.txt')
+        testPathTxt = writePathTxt(pathList=testImageList, savedTxtName='test.txt')
+
+    # 대상 디렉토리를 train으로 이름 변경
+    if trainPath.name != 'train' :
+        trainPath = trainPath.rename(trainPath.parent / 'train')
 
     trainpngList = list(trainPath.glob(f'*.{imageType}'))
     for i in range(len(trainpngList)) :
         trainpngList[i] = str(trainpngList[i].absolute())
 
-    trainPathTxt = printPathTxt(pathList=trainpngList, savedTxtName='train.txt')
+    trainPathTxt = writePathTxt(pathList=trainpngList, savedTxtName='train.txt')
 
     print('train')
     print(trainPathTxt)
@@ -88,11 +92,6 @@ def main() :
     print(validPathTxt)
     print('test')
     print(testPathTxt)
-
-    # 대상 디렉토리를 train으로 이름 변경
-    if trainPath.name != 'train' :
-        trainPath = trainPath.rename(trainPath.parent / 'train')
-
 
 def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclude = '') :
     firstFileList = list(dirPath.glob(f'*.{firstFileExtension}'))
@@ -124,7 +123,7 @@ def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclud
     print('OK, FILE CHECK COMPLETE')
 
 
-def printPathTxt(pathList, savedTxtName) :
+def writePathTxt(pathList, savedTxtName) :
     pathStr = '\n'.join(pathList)
     trainTxtPath = Path(savedTxtName)
     trainTxtPath.write_text(pathStr)
