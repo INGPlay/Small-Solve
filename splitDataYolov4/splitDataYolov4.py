@@ -78,7 +78,9 @@ def main() :
 
     # 대상 디렉토리를 train으로 이름 변경
     if trainPath.name != 'train' :
-        trainPath = trainPath.rename(trainPath.parent / 'train')
+        trainName = trainPath.parent / 'train'
+        trainPath.rename(trainName)
+        trainPath = trainName
 
     trainpngList = list(trainPath.glob(f'*.{imageType}'))
     for i in range(len(trainpngList)) :
@@ -146,4 +148,6 @@ def copyFilePair(start, destination, name, pairType1, pairType2) :
 
     return destinationPair1
 
-main()
+
+if __name__ == "__main__":
+    main()
