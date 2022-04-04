@@ -14,19 +14,27 @@ python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDa
   
 ## feature  
    
-* ImagesAndLabels  
-    * (Image and Label) * 100  
+* ImagesAndLabels   
+    * class.txt  
+    * (Jpg and Label) * 100  
    
   
 ```bash
-$ python --trainPath ./ImagesAndLabels -p ./example -t 0.6 -v 0.2 -te 0.2 -it jpg -ct class.txt
+$ python --trainPath ./ImagesAndLabels -p ./example -t 0.6 -v 0.2 -te 0.2 -it jpg -ct class.txt  
 ```
      
-      
+
+* train.txt  
+* valid.txt  
+* test.txt  
+* class.txt  
 * train    
-    * (Image and Label) * 60    
+    * class.txt  
+    * (Jpg and Label) * 60    
 * valid   
-    * (Image and Label) * 20   
-* test   
-    * (Image and Label) * 20   
+    * class.txt  
+    * (Jpg and Label) * 20    
+* test    
+    * class.txt  
+    * (Jpg and Label) * 20   
     

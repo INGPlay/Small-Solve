@@ -27,8 +27,9 @@ def main() :
     validRatio = args.validRatio
     testRatio = args.testRatio
     imageType = args.imageType
-    classTxtPath = Path(args.classTxt)
-
+    classTxt = Path(args.classTxt)
+    
+    print(f'{trainRatio} : {validRatio} : {testRatio}')
     if trainRatio + validRatio + testRatio != 1 :
         sys.exit('Sum of ratios is not 1')
 
@@ -52,8 +53,11 @@ def main() :
     validPath = dataSetPath / 'valid'
     validPath.mkdir(exist_ok=True)
 
+    # classes.txt
+    shutil.copy(trainPath / classTxt, dataSetPath / classTxt)
+
     validImageList = []
-    shutil.copy(trainPath / classTxtPath, validPath / classTxtPath)
+    shutil.copy(trainPath / classTxt, validPath / classTxt)
     for i in range(validRepeat) :
         name = imageList[ran[i]].stem
         validImagePath = copyFilePair(start=trainPath, destination=validPath, name=name, pairType1=imageType, pairType2='txt')
@@ -68,7 +72,7 @@ def main() :
         testPath = dataSetPath / 'test'
         testPath.mkdir(exist_ok=True)
 
-        shutil.copy(trainPath / classTxtPath, testPath / classTxtPath)
+        shutil.copy(trainPath / classTxt, testPath / classTxt)
         for i in range(validRepeat, otherRepeat) :
             name = imageList[ran[i]].stem
             testImagePath = copyFilePair(start=trainPath, destination=testPath, name=name, pairType1=imageType, pairType2='txt')
