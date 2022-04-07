@@ -1,4 +1,4 @@
-# splitDataYolov5  
+# splitDataYolov4   
 ```bash
 python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDataRatio --testRatio testDataRatio --imageType dataImageType --classTxt classTextFile  
 ```
