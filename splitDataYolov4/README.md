@@ -13,6 +13,7 @@ python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDa
   
   
 ## feature  
+### before
    
 * ImagesAndLabels   
     * class.txt  
@@ -22,8 +23,8 @@ python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDa
 ```bash
 $ python --trainPath ./ImagesAndLabels -p ./example -t 0.6 -v 0.2 -te 0.2 -it jpg -ct class.txt  
 ```
+### after
      
-
 * train.txt  
 * valid.txt  
 * test.txt  
