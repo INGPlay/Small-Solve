@@ -1,6 +1,6 @@
 # splitDataYolov4   
 ```bash
-python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDataRatio --testRatio testDataRatio --imageType dataImageType --classTxt classTextFile  
+python splitDataYolov4.py --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDataRatio --testRatio testDataRatio --imageType dataImageType --classTxt classTextFile  
 ```
   
 ## flag  
@@ -15,16 +15,18 @@ python --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDa
 ## feature  
 ### before
    
+* splitDataYolov4.py
 * ImagesAndLabels   
     * class.txt  
     * (Jpg and Label) * 100  
    
   
 ```bash
-$ python --trainPath ./ImagesAndLabels -p ./example -t 0.6 -v 0.2 -te 0.2 -it jpg -ct class.txt  
+$ python splitDataYolov4.py -p ./ImagesAndLabels -t 0.6 -v 0.2 -te 0.2 -it jpg -ct class.txt  
 ```
 ### after
-     
+   
+* splitDataYolov4.py    
 * train.txt  
 * valid.txt  
 * test.txt  
