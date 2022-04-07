@@ -53,20 +53,16 @@ def main() :
     validPath = dataSetPath / 'valid'
     validPath.mkdir(exist_ok=True)
 
-    # classes.txt
-    shutil.copy(trainPath / classTxt, dataSetPath / classTxt)
-
     validImageList = []
-    shutil.copy(trainPath / classTxt, validPath / classTxt)
     for i in range(validRepeat) :
         name = imageList[ran[i]].stem
         validImagePath = copyFilePair(start=trainPath, destination=validPath, name=name, pairType1=imageType, pairType2='txt')
         validImageList.append(str(validImagePath.absolute()))
     
-    validPathTxt = writePathTxt(pathList=validImageList, savedTxtName='valid.txt')
+    validTxtPath = writePathTxt(pathList=validImageList, savedTxtName='valid.txt')
 
     testImageList = []
-    testPathTxt = ''
+    testTxtPath = Path('')
     if testRatio :
         #test 경로 생성
         testPath = dataSetPath / 'test'
@@ -78,9 +74,9 @@ def main() :
             testImagePath = copyFilePair(start=trainPath, destination=testPath, name=name, pairType1=imageType, pairType2='txt')
             testImageList.append(str(testImagePath.absolute()))
         
-        testPathTxt = writePathTxt(pathList=testImageList, savedTxtName='test.txt')
+        testTxtPath = writePathTxt(pathList=testImageList, savedTxtName='test.txt')
 
-    # 대상 디렉토리를 train으로 이름 변경
+    # train 디렉토리의 주소 경로를 적기 전에 대상 디렉토리를 train으로 이름 변경
     if trainPath.name != 'train' :
         trainName = trainPath.parent / 'train'
         trainPath.rename(trainName)
@@ -90,14 +86,33 @@ def main() :
     for i in range(len(trainpngList)) :
         trainpngList[i] = str(trainpngList[i].absolute())
 
-    trainPathTxt = writePathTxt(pathList=trainpngList, savedTxtName='train.txt')
+    trainTxtPath = writePathTxt(pathList=trainpngList, savedTxtName='train.txt')
 
-    print('train')
-    print(trainPathTxt)
-    print('valid')
-    print(validPathTxt)
-    print('test')
-    print(testPathTxt)
+    # classes.txt -> obj.names
+    namesPath = dataSetPath / Path('obj.names')
+    classNum = 0
+    with open(trainPath / classTxt, mode='r', encoding='utf-8') as f :
+        longLine = f.read()
+        lines = list(filter(None, longLine.split('\n')))
+        classNum = len(lines)
+        print(f"classes : {classNum}")
+        print(longLine)
+        
+        with open(namesPath, mode='w', encoding='utf-8') as f :
+            longLine = '\n'.join(lines)
+            f.write(longLine)
+
+    # obj.data
+    dataPath = dataSetPath / Path('obj.data')
+    with open(dataPath, mode='w', encoding='utf-8') as f :
+        f.write(f"classes = {classNum}\n" \
+                f"train = {trainTxtPath.absolute()}\n" \
+                f"valid = {validTxtPath.absolute()}\n" \
+                f"names = {namesPath.absolute()}\n" \
+                f"backup = backup\n")
+
+    print('Success')
+
 
 def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclude = '') :
     firstFileList = list(dirPath.glob(f'*.{firstFileExtension}'))
@@ -131,11 +146,11 @@ def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclud
 
 def writePathTxt(pathList, savedTxtName) :
     pathStr = '\n'.join(pathList)
-    trainTxtPath = Path(savedTxtName)
-    trainTxtPath.write_text(pathStr)
-    print(savedTxtName)
-    print(pathStr)
-    return pathStr
+    txtPath = Path(savedTxtName)
+    txtPath.write_text(pathStr)
+    # print(savedTxtName)
+    # print(pathStr)
+    return txtPath
 
 
 def copyFilePair(start, destination, name, pairType1, pairType2) :

@@ -27,7 +27,8 @@ $ python --trainPath ./ImagesAndLabels -p ./example -t 0.6 -v 0.2 -te 0.2 -it jp
 * train.txt  
 * valid.txt  
 * test.txt  
-* class.txt  
+* obj.names
+* obj.data
 * train    
     * class.txt  
     * (Jpg and Label) * 60    
