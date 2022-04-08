@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description=
     "YOLOv5 Image Splitter \n Train Ratio + Valid Ratio + Test Ratio = 1"
 )
 
-parser.add_argument('--trainPath', '-p',
+parser.add_argument('--dataPath', '-p',
     help='path on images and labels, this is changed to \'train\' directory')
 parser.add_argument('--trainRatio', '-t', type=float, default=0.7,
     help='Train Ratio for images and labels')
@@ -20,9 +20,10 @@ parser.add_argument('--imageType', '-it', type=str,
 parser.add_argument('--classTxt', '-ct', type=str, default='classes.txt',
     help='txt file for classes')
 
+
 def main() :
     args = parser.parse_args()
-    trainPath = Path(args.trainPath)
+    trainPath = Path(args.dataPath)
     trainRatio = args.trainRatio
     validRatio = args.validRatio
     testRatio = args.testRatio
@@ -33,6 +34,7 @@ def main() :
     if trainRatio + validRatio + testRatio != 1 :
         sys.exit('Sum of ratios is not 1')
 
+    global dataSetPath
     dataSetPath = trainPath.parent
 
     matchingFileChecker(dirPath=trainPath, firstFileExtension=imageType, secondFileExtension='txt', exclude=args.classTxt)
@@ -54,6 +56,7 @@ def main() :
     validPath.mkdir(exist_ok=True)
 
     validImageList = []
+    shutil.copy(trainPath / classTxt, validPath / classTxt)
     for i in range(validRepeat) :
         name = imageList[ran[i]].stem
         validImagePath = copyFilePair(start=trainPath, destination=validPath, name=name, pairType1=imageType, pairType2='txt')
@@ -137,16 +140,16 @@ def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclud
             soloList.append(str(file.name))
             print(f'{filePath} is not matched')
 
-    print(soloList)
     if len(soloList) :
-        sys.exit('Check your files')
+        print('Not Matched : ', soloList)
+        sys.exit('Check your files again')
 
-    print('OK, FILE CHECK COMPLETE')
+    print('OK, FILE CHECK COMPLETE \n')
 
 
 def writePathTxt(pathList, savedTxtName) :
     pathStr = '\n'.join(pathList)
-    txtPath = Path(savedTxtName)
+    txtPath = dataSetPath / Path(savedTxtName)
     txtPath.write_text(pathStr)
     # print(savedTxtName)
     # print(pathStr)

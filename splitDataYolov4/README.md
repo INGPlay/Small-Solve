@@ -1,10 +1,10 @@
 # splitDataYolov4   
 ```bash
-python splitDataYolov4.py --trainPath trainDirPath --trainRatio trainDataRatio --validRatio validDataRatio --testRatio testDataRatio --imageType dataImageType --classTxt classTextFile  
+python splitDataYolov4.py --dataPath dataDirPath --trainRatio trainDataRatio --validRatio validDataRatio --testRatio testDataRatio --imageType dataImageType --classTxt classTextFile  
 ```
   
 ## flag  
---trainPath, -p,   
+--dataPath, -p,   
 --trainRatio, -t, 0.7  
 --validRatio, -v, 0.3  
 --testRatio, -te 0  
