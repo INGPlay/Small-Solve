@@ -85,11 +85,11 @@ def main() :
         trainPath.rename(trainName)
         trainPath = trainName
 
-    trainpngList = list(trainPath.glob(f'*.{imageType}'))
-    for i in range(len(trainpngList)) :
-        trainpngList[i] = str(trainpngList[i].absolute())
+    trainImageList = list(trainPath.glob(f'*.{imageType}'))
+    for i in range(len(trainImageList)) :
+        trainImageList[i] = str(trainImageList[i].absolute())
 
-    trainTxtPath = writePathTxt(pathList=trainpngList, savedTxtName='train.txt')
+    trainTxtPath = writePathTxt(pathList=trainImageList, savedTxtName='train.txt')
 
     # classes.txt -> obj.names
     namesPath = dataSetPath / Path('obj.names')
@@ -102,7 +102,6 @@ def main() :
         print(longLine)
         
         with open(namesPath, mode='w', encoding='utf-8') as f :
-            longLine = '\n'.join(lines)
             f.write(longLine)
 
     # obj.data
@@ -128,7 +127,7 @@ def matchingFileChecker(dirPath, firstFileExtension, secondFileExtension, exclud
             fileNameStr = str(file.name)
             if fileNameStr == exclude :
                 continue
-            soloList.append(str(file.name))
+            soloList.append(fileNameStr)
             print(f'{filePath} is not matched')
 
     for file in secondFileList :
