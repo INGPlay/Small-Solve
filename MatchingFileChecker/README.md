@@ -1,4 +1,4 @@
-# splitDataYolov5  
+# MatchingFileChecker  
 ```bash
 python --dirPath dirPath --firstExtension fileExtension1 --secondExtension fileExtension2
 ```
