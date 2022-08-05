@@ -23,7 +23,7 @@
 - YOLOv4에 데이터셋 양식에 맞춰 train과 valid, test로 나누어진 데이터셋 만들기  
 ### matchingFileChecker   
 - 파일이름은 같고 확장자가 다른 파일 무리 중에 짝이 맞지 않는 것 찾기
-### Metrics
+### sklearn_support
 - Scikit learn 머신러닝 학습 관련 클래스
 ### Regression
 - 인공지능사관학교 데이터 분석(회귀)
