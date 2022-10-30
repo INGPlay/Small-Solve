@@ -1,14 +1,14 @@
 # combine_csv
 ```bash
-python --paths csv_paths --output_path output_csv_path --encode loaded_csv_encode --output_encode saved_csv_encode --process_count process_for_multiprocessing
+python combine_csv.py --paths csv_paths --output_path output_csv_path --encode loaded_csv_encode --output_encode saved_csv_encode --process_count process_for_multiprocessing
 ```
   
 ## flag  
 --paths, -p  
 --output_path, -op 
---encode, -e
---output_encode, -oe  
---process_count, -pc
+--encode, -e, cp949
+--output_encode, -oe, utf-8-sig
+--process_count, -pc, 4
   
   
 ## feature  
