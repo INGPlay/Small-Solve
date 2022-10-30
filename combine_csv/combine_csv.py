@@ -15,7 +15,7 @@ parser.add_argument("--process_count", "-pc", default= 4, type= int, help= "proc
 args = parser.parse_args()
 
 paths = args.paths
-output_path = args.path
+output_path = args.output_path
 encode = args.encode
 output_encode = args.output_encode
 processes = args.process_count
