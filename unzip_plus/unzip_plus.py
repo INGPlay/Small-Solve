@@ -19,8 +19,8 @@ def unzip(member) :
     try :
         member.filename = member.filename.encode('cp437').decode('euc-kr')
         zf.extract(member, path= output_dir)
-    except FileExistsError as fe :
-        print(fe)
+    except Exception as e :
+        print(member, "\n", e)
 
 if __name__ == '__main__':
     if not os.path.exists(output_dir):

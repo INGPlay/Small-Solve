@@ -22,8 +22,13 @@ processes = args.process_count
 
 # 병렬처리에 사용할 함수
 def combine_csv(file_name) :
-    result = pd.read_csv(file_name, encoding= encode)
-    return result
+    try :
+        result = pd.read_csv(file_name, encoding= encode)
+        return result
+    except pd.errors.EmptyDataError as ee:
+        print(file_name, "\n", ee)
+    except Exception as e :
+        print(file_name, "\n", e)
 
 if __name__ == '__main__':
     # 경로의 파일을 가져옴
